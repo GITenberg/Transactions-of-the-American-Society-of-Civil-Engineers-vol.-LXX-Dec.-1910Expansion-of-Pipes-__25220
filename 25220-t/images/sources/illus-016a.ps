@@ -1,0 +1,225 @@
+
+/cl {currentlinewidth} def
+/f {fill} def
+/l {lineto} def
+/c {curveto} def
+/m {moveto} def
+/n {newpath} def
+/p {pop} def
+/r {repeat} def
+/rl {rlineto} def
+/rm {rmoveto} def
+/rs {rectstroke} def
+/s {stroke} def
+/sh {show} def
+/sl {setlinewidth} def
+/t {translate} def
+/x {exch} def
+/: {gsave} def
+/; {grestore} def
+/getlblsz { dup 10 dict begin /show {false charpath} def /glyphshow {pop (M) false charpath} def % M here is a guess
+ : n 0 0 m exec sh flattenpath pathbbox ; end
+ % save the box for later use
+ 4 copy 2 index sub /lblht x def 2 index sub /lblwd x def /lbly x def /lblx x def} def
+/?paintbg false def
+/paintbg { ?paintbg {: 1 setgray currentpoint t
+   lblx FontScale 8 div sub lbly FontScale 12 div sub
+   lblwd FontScale 4 div add lblht FontScale 6 div add rectfill ;} if } def
+/clbl { : getlblsz 3 -1 roll add -2 div 3 1 roll add -2 div
+ 5 1 roll 4 1 roll 5 1 roll m rm paintbg exec show ; } def
+/llbl { : getlblsz 2 div 4 1 roll offset add neg
+ 7 -1 roll add 6 -1 roll 5 -1 roll sub m p p paintbg exec sh ; } def
+/rlbl { : getlblsz 2 div 4 1 roll p p p 3 -1 roll x sub
+ 3 -1 roll offset add x m paintbg exec sh ; } def
+/ulbl { : getlblsz p 2 div 6 -1 roll x sub
+ 5 -1 roll offset add m p p paintbg exec sh ; } def
+/dlbl { : getlblsz offset add 6 -1 roll x sub 
+ x 2 div 6 -1 roll x sub x m p p paintbg exec sh ; } def
+/lllbl { : 3 1 roll m hoffset offset rm paintbg exec sh ; } def
+/lrlbl { : 3 1 roll m getlblsz p x p sub hoffset sub offset rm exec sh ; } def
+/ullbl { : getlblsz x p sub offset sub x p 3 -1 roll add 3 -1 roll hoffset add x m exec sh ; } def
+/urlbl { : getlblsz 3 -1 roll sub offset add 4 1 roll
+ x sub hoffset add 5 -1 roll x sub  4 2 roll sub m exec sh ; } def
+% x y angle (string) cvlbl
+/cvlbl { : getlblsz 4 {pop} r 4 2 roll t x rotate 0 0 3 -1 roll lllbl ; } def
+/GoDown { 1 FontScale -0.15 mul rm } def
+/GonwoD { 1 FontScale 0.15 mul rm } def
+/GoUp { 1 FontScale 0.42 mul rm } def
+/GopU { 1 FontScale -0.42 mul rm } def
+/Super { currentfont .7 scalefont setfont GoUp
+ /FontScale FontScale .7 mul def exec show
+ /FontScale FontScale .7 div def GopU 
+ currentfont 1 .7 div scalefont setfont () } def
+/Sub { currentfont .7 scalefont setfont GoDown
+ /FontScale FontScale .7 mul def exec show
+ /FontScale FontScale .7 div def GonwoD
+ currentfont 1 .7 div scalefont setfont () } def
+
+/offset 3 def
+/hoffset {offset} def
+/FontScale 7 def
+/cmr {/LMRoman7-Regular FontScale selectfont} def cmr
+/cmmi {/CMMI7 FontScale selectfont} def
+/cmsy {/CMSY7 FontScale selectfont} def
+
+[ {ThisPage} <</CropBox [0 0 330 235] /MediaBox 1 index /ArtBox 1 index >> /PUT pdfmark
+
+20 20 t
+
+: % horizontal gridlines
+.2 sl
+13 {0 15 t 0 0 m 300 0 l} r s
+;
+
+: % vertical gridlines
+.2 sl
+7 { 37.5 0 t 0 0 m 0 210 l} r s
+;
+
+: % textbox
+/BoxWidth 187.5 def
+1 setgray
+0 165 BoxWidth 45
+4 copy rectfill
+0 setgray .2 sl
+rs
+;
+.6 sl 0 0 300 210 rs
+
+% curve labels
+3 dict begin /offset 1.75 def /FontScale 6 def cmr /?paintbg true def
+/labels {
+200 120.5 50.3 {currentfont cmmi (l) sh -1 0 rm setfont (2) Sub sh (=) sh cmsy (\061)} cvlbl
+200 100.4 45.1 {currentfont cmmi (l) sh -1 0 rm setfont (2) Sub sh (=4) sh
+            currentfont cmmi (l) sh -1 0 rm setfont (1) Sub} cvlbl
+200 108.4 47.3 {currentfont cmmi (l) sh -1 0 rm setfont (2) Sub sh (=8) sh
+            currentfont cmmi (l) sh -1 0 rm setfont (1) Sub} cvlbl
+200 90.4 42.1 {currentfont cmmi (l) sh -1 0 rm setfont (2) Sub sh (=2) sh
+            currentfont cmmi (l) sh -1 0 rm setfont (1) Sub} cvlbl
+240 115.7 43.9 {currentfont cmmi (l) sh -1 0 rm setfont (2) Sub sh (=) sh
+            currentfont cmmi (l) sh -1 0 rm setfont (1) Sub} cvlbl
+240 104.1 40.9 {currentfont cmmi (l) sh -1 0 rm setfont (2) Sub sh (=) sh /onehalf glyphshow
+            currentfont cmmi (l) sh -1 0 rm setfont (1) Sub} cvlbl
+240 96.4 38.8 {currentfont cmmi (l) sh -1 0 rm setfont (2) Sub sh (=) sh /onequarter glyphshow
+            currentfont cmmi (l) sh -1 0 rm setfont (1) Sub} cvlbl
+240 86.7 35.9 {currentfont cmmi (l) sh -1 0 rm setfont (2) Sub sh (=0)} cvlbl
+} def : 1 setgray labels ; /?paintbg false def labels
+end
+
+: % the curves
+0 0 300 210 rectclip
+.4 sl
+75
+16.94117647
+m
+150
+50.82352941
+225
+135.5294118
+300
+271.0588235
+c
+75
+15.24705882
+m
+150
+45.74117647
+225
+121.9764706
+300
+243.9529412
+c
+75
+14.11764706
+m
+150
+42.35294118
+225
+112.9411765
+300
+225.8823529
+c
+75
+12.70588235
+m
+150
+38.11764706
+225
+101.6470588
+300
+203.2941176
+c
+75
+11.29411765
+m
+150
+33.88235294
+225
+90.35294118
+300
+180.7058824
+c
+75
+10.16470588
+m
+150
+30.49411765
+225
+81.31764706
+300
+162.6352941
+c
+75
+9.411764706
+m
+150
+28.23529412
+225
+75.29411765
+300
+150.5882353
+c
+75
+8.470588235
+m
+150
+25.41176471
+225
+67.76470588
+300
+135.5294118
+c
+s
+;
+cmr
+
+% vertical axis
+0 30 (2) llbl
+0 60 (4) llbl
+0 90 (6) llbl
+0 120 (8) llbl
+0 150 (10) llbl
+0 180 (12) llbl
+:
+90 rotate
+105 13 {(Expansion \() sh currentfont cmmi (r) sh setfont (\), in Inches.)} clbl
+;
+
+% horizontal axis
+75 0 (10) dlbl
+150 0 (20) dlbl
+225 0 (30) dlbl
+300 0 (40) dlbl
+150 -15 {(Length of 3) sh /hungarumlaut glyphshow
+ ( Pipe under Strain \() sh currentfont cmmi (l) sh setfont -1 0 rm (1) Sub sh (\), in Feet.)} clbl
+
+% textbox
+10 169 {(Maximum Fiber Stress = 12) sh 1.7 0 rm (000 lb. per sq. in.)} rlbl
+10 177 {(Secondary Expansion \() sh currentfont cmmi (s) sh setfont (\) = Zero)} rlbl
+/LMSansQuotation8-Regular 6.5 selectfont
+BoxWidth 2 div 185 (UNDER STRAIN FOR VARIOUS EXPANSIONS.) clbl
+BoxWidth 2 div 205 (DIAGRAM SHOWING LENGTHS OF) clbl
+/LMSansQuotation8-Regular 10 selectfont
+BoxWidth 2 div 195 (3-IN. PIPE) clbl
+
+showpage
