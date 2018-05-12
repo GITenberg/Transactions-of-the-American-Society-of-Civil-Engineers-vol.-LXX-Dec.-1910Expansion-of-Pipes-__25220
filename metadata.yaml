@@ -1,0 +1,28 @@
+_repo: Transactions-of-the-American-Society-of-Civil-Engineers-vol.-LXX-Dec.-1910Expansion-of-Pipes-__25220
+_version: 0.1.0
+covers:
+- cover_type: generated
+  image_path: cover.png
+creator:
+  author:
+    agent_name: Taggart, Ralph C.
+    gutenberg_agent_id: '31156'
+    url: http://www.gutenberg.org/2009/agents/31156
+description: ''
+gutenberg_bookshelf: Technology
+gutenberg_issued: '2008-04-28'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '25220'
+language: en
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcsh 'Steam-pipes'
+- !lcsh 'Strains and stresses'
+- !lcc 'TA'
+title: 'Transactions of the American Society of Civil Engineers, vol. LXX, Dec. 1910
+
+  Expansion of Pipes, Paper No. 1167'
+url: http://www.gutenberg.org/ebooks/25220
